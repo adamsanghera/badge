@@ -5,19 +5,19 @@ import (
 	"encoding/hex"
 )
 
-// Badge is an interface for services providing identity insurance.
+// Badge is an interface for minting identity insurance.
 // Badges are a passport, certifying a recent check of citizenship.
-type Badge interface {
+type BadgeMinter interface {
 	Mint() (interface{}, error)
 }
 
 // RandomToken implements Badge
-type RandomToken struct {
+type RandomTokenMinter struct {
 	tokenLength int
 }
 
 // Mint generates a random string, and returns it.
-func (t RandomToken) Mint() (interface{}, error) {
+func (t RandomTokenMinter) Mint() (interface{}, error) {
 	bitString := make([]byte, t.tokenLength)
 	_, err := rand.Read(bitString)
 	if err != nil {
