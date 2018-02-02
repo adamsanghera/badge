@@ -8,26 +8,20 @@ import (
 // Badge is an interface for services providing identity insurance.
 // Badges are a passport, certifying a recent check of citizenship.
 type Badge interface {
-	GetID() interface{}
-	Mint() error
+	Mint() (interface{}, error)
 }
 
-// Token implements Badge
-type Token struct {
+// RandomToken implements Badge
+type RandomToken struct {
 	tokenLength int
-	hash        string
 }
 
-func (t Token) GetID() interface{} {
-	return t.hash
-}
-
-func (t Token) Mint() error {
+// Mint generates a random string, and returns it.
+func (t RandomToken) Mint() (interface{}, error) {
 	bitString := make([]byte, t.tokenLength)
 	_, err := rand.Read(bitString)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	t.hash = hex.EncodeToString(bitString)
-	return nil
+	return hex.EncodeToString(bitString), nil
 }
