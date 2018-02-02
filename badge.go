@@ -3,6 +3,7 @@ package badge
 import (
 	"time"
 
+	"github.com/adamsanghera/auth"
 	"github.com/adamsanghera/category"
 )
 
@@ -14,7 +15,7 @@ type Badge interface {
 
 	// Queries
 	BelongsTo() category.Category
-	Create() (uid interface{}, bid interface{}, badgeScanner Authenticator, timeToLive time.Duration, err error)
-	Refresh() (uid interface{}, bid interface{}, badgeScanner Authenticator, timeToLive time.Duration, err error)
-	Validate(uid interface{}, bid interface{}, badgeScanner Authenticator) (bool, error)
+	Create() (uid interface{}, bid interface{}, badgeScanner auth.Authenticator, timeToLive time.Duration, err error)
+	Refresh() (uid interface{}, bid interface{}, badgeScanner auth.Authenticator, timeToLive time.Duration, err error)
+	Validate(uid interface{}, bid interface{}, badgeScanner auth.Authenticator) (bool, error)
 }
