@@ -5,13 +5,13 @@ import (
 	"encoding/hex"
 )
 
-// Badge is an interface for minting identity insurance.
+// Minter is an interface for minting identity insurance.
 // Badges are a passport, certifying a recent check of citizenship.
-type BadgeMinter interface {
+type Minter interface {
 	Mint() (interface{}, error)
 }
 
-// RandomToken implements Badge
+// RandomTokenMinter implements Minter
 type RandomTokenMinter struct {
 	tokenLength int
 }
