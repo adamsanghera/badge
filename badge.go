@@ -14,7 +14,14 @@ type Minter interface {
 
 // RandomTokenMinter implements Minter
 type RandomTokenMinter struct {
-	tokenLength int
+	TokenLength int
+}
+
+// NewRandomTokenMinter creates a new random token minter, which mints tokens of size n.
+func NewRandomTokenMinter(tokenLength int) RandomTokenMinter {
+	return RandomTokenMinter{
+		TokenLength: tokenLength,
+	}
 }
 
 // Mint generates a random string, and returns it.
